@@ -90,7 +90,7 @@ const Create = () => {
           </div>
 
           <div className="file-field input-field">
-            <div className="btn">
+            <div className="btn #2196f3 blue">
               <span>Media File</span>
               <input onChange={handleFileInput} type="file" accept="images/*" />
             </div>
@@ -110,7 +110,7 @@ const Create = () => {
             </div>
           </div>
 
-          <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+          <button className="btn waves-effect waves-light #2196f3 blue" type="submit" name="action">Submit
           <i className="material-icons right">send</i>
         </button>
         </form>

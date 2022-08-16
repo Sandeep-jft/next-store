@@ -31,7 +31,7 @@ const ProductDetails = (props) => {
                 method:"DELETE"
             });
             const data = await response.json();
-            console.log('Product delete ', data);
+            M.toast({html: 'Success', classes:'green'});
             routes.push('/');
         } catch (error ){
             console.log({error});
