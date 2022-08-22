@@ -2,15 +2,26 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { parseCookies } from 'nookies'
+import Cookies from 'js-cookie'
+import { Fragment, useState, useEffect } from "react";
 
 const Navbar = ()=>{
+    const [ isLoggedIn, setIsLoggedIn ] = useState( false );
     const routes = useRouter();
+    const loginToken = Cookies.get('token');
+    const {token} = parseCookies();
+
+    useEffect(()=>{
+        setIsLoggedIn(token?true: false);
+    },[])
+
 
     const getActiveRoute = (route)=>{
         if(route === routes.pathname){
             return 'active'
         }
-        return ''
+        return '';
     }
     return (
         <>
@@ -23,7 +34,9 @@ const Navbar = ()=>{
                 <a className="brand-logo left" >E-Cart</a>
             </Link>
             <ul id="nav-mobile" className="right">
-                <li className={getActiveRoute('/signup')}>
+                {
+                    !isLoggedIn ? <Fragment>
+                        <li className={getActiveRoute('/signup')}>
                     <Link href="/signup">
                     <a  >Sign up</a>
                     </Link>
@@ -33,11 +46,22 @@ const Navbar = ()=>{
                     <a >Login</a>
                     </Link>
                 </li>
-                <li className={getActiveRoute('/create')}>
+                    </Fragment> : 
+                    <Fragment>
+                        <li className={getActiveRoute('/create')}>
                     <Link href="/create">
                     <a >Create</a>
                     </Link>
-                </li>
+                    </li>
+                        <li className={getActiveRoute('/profile')}>
+                        <Link href="/profile">
+                        <a >Profile</a>
+                        </Link>
+                    </li>
+                    </Fragment>
+
+                }
+                
             </ul>
         </div>
         </nav>

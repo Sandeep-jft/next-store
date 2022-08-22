@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 const Profile = () => {
   const router =  useRouter();
+  
   const handleLogout = async (e)=>{
     e.preventDefault();
     try{
